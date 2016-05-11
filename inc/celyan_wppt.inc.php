@@ -39,9 +39,10 @@ class celyanWppt {
 		
 		$url1 = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
 		
-		/*
+		
 		$response1 = wp_remote_get( $url1 );
 		
+		/*
 		if( isset( $response1['tag_name'] ) && preg_match( '/^(.*)\.(\d+)$/', $response1['tag_name'], $matches ) ) {
 			$tag_name = $matches[1] . '.' . $matches[2]+1;
 			
@@ -74,6 +75,7 @@ class celyanWppt {
 		echo '<p>URL1: ' . $url1 . '</p>';
 		echo '<p>URL: ' . $url . '</p>';
 		echo '<p><pre>';
+		var_dump( $response1 );
 		var_dump( $response );
 		var_dump( $wppusherPluginObj );
 		echo '</pre></p></div>';
