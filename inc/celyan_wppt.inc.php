@@ -21,9 +21,37 @@ class celyanWppt {
 		if(	$row = $wpdb->get_row("SELECT * FROM $table_name WHERE package='$plugin_file';") ) {
 			//var_dump( $row );	//Debug
 			
+			$this->github_tag( $row );
+			
 		} else {
 			/** Failed **/
 			return;
+		}
+	}
+	
+	private function github_tag( $plugin_data ) {
+		
+		$repository = $plugin_data->repository;
+		
+		$token = get_option('gh_token');
+		
+		$payload = json_encode(array(
+			'tag_name'	=> 'v.0.1.0',
+			'name'		=> 'test',
+			'body'		=> 'body test'
+		));
+		
+		$url = "https://api.github.com/repos/{$repository->__toString()}/releases?access_token={$token}";
+		
+		$response = wp_remote_post($url, array(
+			'body' => $payload,
+			'headers' => array(
+					'Content-Type' => 'application/json',
+			),
+		));
+		
+		if ($response instanceof \WP_Error) {
+			throw new \Exception('Release tag was not created on GitHub. Make sure a valid GitHub token is stored.');
 		}
 	}
 }
