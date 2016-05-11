@@ -21,7 +21,7 @@ class celyanWppt {
 		if(	$row = $wpdb->get_row("SELECT * FROM $table_name WHERE package='$plugin_file';") ) {
 			//var_dump( $row );	//Debug
 			
-			$this->github_tag( $row );
+			$this->github_tag( $row, $wppusherPluginObj );
 			
 		} else {
 			/** Failed **/
@@ -29,7 +29,7 @@ class celyanWppt {
 		}
 	}
 	
-	private function github_tag( $plugin_data ) {
+	private function github_tag( $plugin_data, $wppusherPluginObj ) {
 		
 		$repository = $plugin_data->repository;
 		
@@ -55,6 +55,7 @@ class celyanWppt {
 		echo '<p>URL: ' . $url . '</p>';
 		echo '<p><pre>';
 		var_dump( $response );
+		var_dump( $wppusherPluginObj );
 		echo '</pre></p></div>';
 		/* */
 		
