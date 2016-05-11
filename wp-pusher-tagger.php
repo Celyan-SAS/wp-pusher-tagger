@@ -41,6 +41,10 @@ License: GPL2
  - Original alpha release 00
  */
 
+/** Class includes **/
+include_once( dirname( __FILE__ ) . '/inc/celyan_wppt.inc.php' );	// main class
+
+/** Instantiate plugins's main class **/
 global $celyan_wppt;
 $celyan_wppt = new celyanWppt();
 ?>
