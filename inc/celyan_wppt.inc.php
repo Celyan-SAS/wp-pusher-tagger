@@ -40,17 +40,24 @@ class celyanWppt {
 		$url1 = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
 		
 		
-		//$response1 = wp_remote_get( $url1 );
+		$response1 = wp_remote_get( $url1, array( 'timeout' => 5 ) );
 		
-		/*
-		if( isset( $response1['tag_name'] ) && preg_match( '/^(.*)\.(\d+)$/', $response1['tag_name'], $matches ) ) {
-			$tag_name = $matches[1] . '.' . $matches[2]+1;
-			
-		} else {
-			$tag_name = 'v0.1.0';
-			
+		/* */
+		$tag_name = 'v0.1.0';
+		if( 
+			is_array( $response1 ) &&
+			isset( $response1['body'] )
+		) { 
+			$payload1 = json_decode( $response1['body'] );
+			if( 
+				isset( $payload1->tag_name ) &&
+				preg_match( '/^(.*)\.(\d+)$/', $payload1->tag_name, $matches ) 
+			) {
+				$tag_name = $matches[1] . '.' . ($matches[2]+1);
+				
+			} 
 		}
-		*/
+		/* */
 		
 		/** Create a new release **/
 		
@@ -73,9 +80,13 @@ class celyanWppt {
 		/* Debug: */
 		echo '<div class="updated">';
 		echo '<p>URL1: ' . $url1 . '</p>';
+		echo '<p>pl tag_name: ' . $payload1->tag_name . '</p>';
+		echo '<p>matches[1]: ' . $matches[1] . '</p>';
+		echo '<p>matches[2]: ' . $matches[2] . '</p>';
+		echo '<p>tag_name: ' . $tag_name . '</p>';
 		echo '<p>URL: ' . $url . '</p>';
 		echo '<p><pre>';
-		var_dump( $response1 );
+		var_dump( $payload1 );
 		var_dump( $response );
 		var_dump( $wppusherPluginObj );
 		echo '</pre></p></div>';
