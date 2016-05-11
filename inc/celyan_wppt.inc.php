@@ -38,7 +38,7 @@ class celyanWppt {
 		/** Get the latest release **/
 		
 		$url1 = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
-		
+		//TODO: /latest endpoint does not return the latest, use /releases instead and grab the last one of the list
 		
 		$response1 = wp_remote_get( $url1, array( 'timeout' => 5 ) );
 		
