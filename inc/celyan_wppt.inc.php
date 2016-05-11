@@ -50,6 +50,8 @@ class celyanWppt {
 			),
 		));
 		
+		var_dump( $response );	//Debug
+		
 		if ($response instanceof \WP_Error) {
 			throw new \Exception('Release tag was not created on GitHub. Make sure a valid GitHub token is stored.');
 		}
