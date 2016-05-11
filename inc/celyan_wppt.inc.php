@@ -35,13 +35,14 @@ class celyanWppt {
 		
 		$token = get_option('gh_token');
 		
-		/** Get the latest release **
+		/** Get the latest release **/
 		
-		$url = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
+		$url1 = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
 		
-		$response = wp_remote_get( $url );
+		/*
+		$response1 = wp_remote_get( $url1 );
 		
-		if( isset( $response['tag_name'] ) && preg_match( '/^(.*)\.(\d+)$/', $response['tag_name'], $matches ) ) {
+		if( isset( $response1['tag_name'] ) && preg_match( '/^(.*)\.(\d+)$/', $response1['tag_name'], $matches ) ) {
 			$tag_name = $matches[1] . '.' . $matches[2]+1;
 			
 		} else {
@@ -70,6 +71,7 @@ class celyanWppt {
 		
 		/* Debug: */
 		echo '<div class="updated">';
+		echo '<p>URL1: ' . $url1 . '</p>';
 		echo '<p>URL: ' . $url . '</p>';
 		echo '<p><pre>';
 		var_dump( $response );
