@@ -14,7 +14,17 @@ class celyanWppt {
 	
 	public function on_plugin_updated( $wppusherPluginObj ) {
 		
-		var_dump( $wppusherPluginObj->plugin->file );	//Debug
+		$plugin_file = $wppusherPluginObj->plugin->file;
+		
+		global $wpdb;
+		$table_name = pusherTableName();
+		if(	$row = $wpdb->get_row("SELECT * FROM $table_name WHERE package='$plugin_file';") ) {
+			var_dump( $row );	//Debug
+			
+		} else {
+			/** Failed **/
+			return;
+		}
 	}
 }
 ?>
