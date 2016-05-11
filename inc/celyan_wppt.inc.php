@@ -14,7 +14,7 @@ class celyanWppt {
 	
 	public function on_plugin_updated( $wppusherPluginObj ) {
 		
-		var_dump( $wppusherPluginObj );
+		var_dump( $wppusherPluginObj->plugin->file );	//Debug
 	}
 }
 ?>
