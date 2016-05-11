@@ -19,7 +19,7 @@ class celyanWppt {
 		global $wpdb;
 		$table_name = pusherTableName();
 		if(	$row = $wpdb->get_row("SELECT * FROM $table_name WHERE package='$plugin_file';") ) {
-			var_dump( $row );	//Debug
+			//var_dump( $row );	//Debug
 			
 		} else {
 			/** Failed **/
