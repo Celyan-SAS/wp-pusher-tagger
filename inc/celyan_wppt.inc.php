@@ -35,7 +35,7 @@ class celyanWppt {
 		
 		$token = get_option('gh_token');
 		
-		/** Get the latest release **/
+		/** Get the latest release **
 		
 		$url = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
 		
@@ -48,6 +48,7 @@ class celyanWppt {
 			$tag_name = 'v0.1.0';
 			
 		}
+		*/
 		
 		/** Create a new release **/
 		
