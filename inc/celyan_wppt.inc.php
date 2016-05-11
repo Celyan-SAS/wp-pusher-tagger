@@ -77,7 +77,7 @@ class celyanWppt {
 			),
 		));
 		
-		/* Debug: */
+		/* Debug: *
 		echo '<div class="updated">';
 		echo '<p>URL1: ' . $url1 . '</p>';
 		echo '<p>pl tag_name: ' . $payload1->tag_name . '</p>';
