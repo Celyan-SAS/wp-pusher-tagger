@@ -35,10 +35,27 @@ class celyanWppt {
 		
 		$token = get_option('gh_token');
 		
+		/** Get the latest release **/
+		
+		$url = "https://api.github.com/repos/{$repository}/releases/latest?access_token={$token}";
+		
+		$response = wp_remote_get( $url );
+		
+		if( isset( $response['tag_name'] ) && preg_match( '/^(.*)\.(\d+)$/', $response['tag_name'], $matches ) ) {
+			$tag_name = $matches[1] . '.' . $matches[2]+1;
+			
+		} else {
+			$tag_name = 'v0.1.0';
+			
+		}
+		
+		/** Create a new release **/
+		
 		$payload = json_encode(array(
-			'tag_name'	=> 'v.0.1.0',
-			'name'		=> 'test',
-			'body'		=> 'body test'
+			'tag_name'	=> $tag_name,
+			'name'		=> 'Déploiement en production ' . $tag_name,
+			'body'		=> 'Déploiement en production',
+			'token'		=> $token
 		));
 		
 		$url = "https://api.github.com/repos/{$repository}/releases?access_token={$token}";
