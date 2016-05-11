@@ -41,7 +41,7 @@ class celyanWppt {
 			'body'		=> 'body test'
 		));
 		
-		$url = "https://api.github.com/repos/{$repository->__toString()}/releases?access_token={$token}";
+		$url = "https://api.github.com/repos/{$repository}/releases?access_token={$token}";
 		
 		$response = wp_remote_post($url, array(
 			'body' => $payload,
